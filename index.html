@@ -6,30 +6,61 @@
 		<link href='http://fonts.googleapis.com/css?family=Neuton' rel='stylesheet' type='text/css'>
 		<style type="text/css" media="screen">
 			html, body {
-				height: 100%;
 				margin: 0;
 			}
+			
+			body {
+				min-height: 100%;
+				background: #ccc;
+			}
 			#one-tb {
-				position: relative;
 				display: block;
-				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
 				height: 100%;
+				width: 100%;
 				font-family: 'Neuton', arial, serif;
 				overflow: hidden;
+				z-index: -1;
 				-webkit-user-select: none;
 				-khtml-user-select: none;
 				-moz-user-select: none;
 				-o-user-select: none;
 				user-select: none;
+				
 			}
 			.one-tb-layer {
 				position: absolute;
-				left: -10%;
-				bottom: -10%;
-				width: 120%;
+				left: -50%;
+				bottom: -50%;
+				width: 200%;
 				text-align: justify;
 				vertical-align: bottom;
 				word-wrap: break-word;
+				-webkit-transform: rotate(20deg) skew(-35deg,0deg);
+			}
+			
+			a {
+				display: block;
+				width: 40%;
+				margin: 5% auto;
+				background: #fff;
+				border: 10px solid #fff;
+				border-radius: 5px;
+				box-shadow: 2px 2px 5px #333;
+				color: #666;
+				text-decoration: none;
+			}
+			
+			img {
+				display: block;
+				width: 100%;
+			}
+			
+			span {
+				display: block;
+				padding-top: 8px;
 			}
 		</style>
 	</head>
@@ -38,9 +69,12 @@
 		<script type="text/javascript" src="oneTypoBackgr.js"></script>
 		<script type="text/javascript">
 			oneTypoBackgr( '#one-tb', {
-				text: 'onereason'
+				text: 'onereason : it’s good'
 			});
 		</script>
-		<img src="http://fc01.deviantart.net/fs26/f/2008/042/e/1/e1a53b29cddbfeef.jpg" alt="Typography Photo by ~fadiawwad"/>
+		<a href="http://fadiawwad.deviantart.com/art/Typography-Photo-77105209">
+			<img src="http://fc01.deviantart.net/fs26/f/2008/042/e/1/e1a53b29cddbfeef.jpg" alt="Typography Photo by ~fadiawwad"/>
+			<span>Got inspired by this image, so decided to generate similar in html.</span>
+		</a>
 	</body>
 </html>

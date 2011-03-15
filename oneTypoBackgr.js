@@ -21,7 +21,6 @@ var oneTypoBackgr = ( function ( doc ) {
 		}
 	  opts = extend( defaults, options );
 		elms = getElement( selector );
-		console.log( elms );
 		elms.forEach( typofill );
 	}
 	
