@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>onereason :: oneTypoBackgr</title>
+		<style type="text/css" media="screen">
+			html, body {
+				height: 100%;
+				margin: 0;
+			}
+			#one-tb {
+				position: relative;
+				display: block;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+			}
+			.one-tb-layer {
+				position: absolute;
+				left: -10%;
+				bottom: -10%;
+				width: 120%;
+				text-align: justify;
+				vertical-align: bottom;
+				word-wrap: break-word;
+			}
+		</style>
+	</head>
+	<body>
+		<aside id="one-tb"></aside>
+		<script type="text/javascript">
+			var oneTypoBackgr = ( function ( doc ) {
+				
+				var elms;
+				
+				var str = 'onereason',
+					maxFontSize = 512,
+					layers = 10;
+				
+				function getElement( selector ) {
+			    var elms;
+			    if ( selector instanceof Array ) elms = selector.filter( function( item ){ return item !== undefined && item !== null });
+			    else if ( selector instanceof Element || selector === window ) elms = [selector];
+			    else if ( selector.constructor == 'NodeListConstructor' ) { elms = []; for ( var i = 0, l = selector.length; i < l; i++ ) elms.push( selector.item( i ) ); }
+			    else elms = Array.prototype.slice.call( document.querySelectorAll( selector ) );
+
+			    return elms;
+			  }
+			
+				function setup ( selector, options ) {
+					if ( this instanceof Element ) {
+						selector = this;
+						options = selector;
+					}
+					elms = getElement( selector );
+					console.log( elms );
+					elms.forEach( typofill );
+				}
+				
+				function typofill ( el ) {
+					createElements( el );
+				}
+				
+				function createElements ( el ) {
+					var cont, text = '', text2 = '';
+					for ( var i = 1; i < layers; i++ ) {
+						cont = document.createElement( 'div' );
+						cont.className = 'one-tb-layer one-tb-layer' + i;
+						for ( var k = 0; k < i; k ++ ) {
+							text += str + ' ';
+						}
+						[].forEach.call( text, function ( t ) {
+							text2 += t + ( Math.random() > 0.9 ? ' ' : '' );
+						});
+						cont.innerHTML = text2;
+						el.appendChild( cont );
+						var maxH = el.offsetHeight * ( 0.7 + 0.3 * i / layers );
+						cont.style.textShadow = '0px 0px ' + ( layers - i ) + 'px #000';
+						autoSize( cont, maxH );
+					}
+				}
+				
+				function autoSize ( el, maxH ) {
+					var fontSize = maxFontSize;
+					do {
+						el.style.fontSize = fontSize + 'px';
+						el.style.lineHeight = fontSize / 2 + 'px';
+						textH = el.offsetHeight;
+						fontSize = Math.floor( fontSize / 1.2 );
+					} while ( textH > maxH && fontSize > 5 )
+				}
+			
+				NodeList.prototype.oneTypoBackgr = Element.prototype.oneTypoBackgr = setup;
+			
+				return setup;
+			})( document );
+			oneTypoBackgr( '#one-tb' );
+		</script>
+	</body>
+</html>
